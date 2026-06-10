@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edu Course | Online Course Management System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#0b1020;
+    --card:rgba(255,255,255,0.08);
+    --primary:#7c3aed;
+    --secondary:#06b6d4;
+    --accent:#f59e0b;
+    --text:#ffffff;
+    --muted:#94a3b8;
+    --border:rgba(255,255,255,0.1);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* Background Glow */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#7c3aed33;
+    border-radius:50%;
+    top:-200px;
+    left:-100px;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#06b6d433;
+    border-radius:50%;
+    bottom:-200px;
+    right:-100px;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+/* Navbar */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(15px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:30px;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:var(--secondary);
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero h1{
+    font-size:70px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.hero span{
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    color:var(--muted);
+    margin-bottom:35px;
+    font-size:18px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 30px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.primary{
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    color:white;
+}
+
+.secondary{
+    background:transparent;
+    border:2px solid var(--secondary);
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+/* Stats */
+
+.stats{
+    padding:80px 8%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.stat-card h2{
+    font-size:45px;
+    color:var(--secondary);
+}
+
+/* Section */
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+/* Courses */
+
+.courses{
+    padding:80px 8%;
+}
+
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.course-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:25px;
+    border-radius:20px;
+    transition:.4s;
+}
+
+.course-card:hover{
+    transform:translateY(-10px);
+}
+
+.course-card h3{
+    margin-bottom:10px;
+}
+
+.course-card p{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:24px;
+    color:var(--secondary);
+    font-weight:bold;
+}
+
+/* Forms */
+
+.forms{
+    padding:80px 8%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.form-box{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:30px;
+    border-radius:20px;
+}
+
+.form-box h2{
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.05);
+    color:white;
+}
+
+input::placeholder{
+    color:var(--muted);
+}
+
+.submit{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    color:white;
+    cursor:pointer;
+}
+
+/* Dashboard */
+
+.dashboard{
+    padding:80px 8%;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.dashboard-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:25px;
+    border-radius:20px;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#1e293b;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+/* Certificate */
+
+.certificate{
+    padding:80px 8%;
+}
+
+.certificate-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:25px;
+    text-align:center;
+    padding:40px;
+}
+
+/* Footer */
+
+footer{
+    margin-top:50px;
+    padding:25px;
+    text-align:center;
+    color:var(--muted);
+    border-top:1px solid var(--border);
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .section-title{
+        font-size:30px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Edu Course</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#login">Login</a>
+        <a href="#dashboard">Dashboard</a>
+    </div>
+</nav>
+
+<section class="hero">
+
+<div>
+
+<h1>
+Welcome to
+<span>Edu Course</span>
+</h1>
+
+<p>
+Learn Java, Web Development, Python, Data Structures and other industry-ready skills through an interactive online learning platform.
+</p>
+
+<div class="buttons">
+
+<button class="btn primary"
+onclick="document.getElementById('courses').scrollIntoView();">
+Explore Courses
+</button>
+
+<button class="btn secondary"
+onclick="document.getElementById('login').scrollIntoView();">
+Student Login
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+<h2>50+</h2>
+<p>Courses</p>
+</div>
+
+<div class="stat-card">
+<h2>5000+</h2>
+<p>Students</p>
+</div>
+
+<div class="stat-card">
+<h2>94%</h2>
+<p>Completion Rate</p>
+</div>
+
+<div class="stat-card">
+<h2>4.9★</h2>
+<p>Ratings</p>
+</div>
+
+</section>
+
+<section class="courses" id="courses">
+
+<h2 class="section-title">Popular Courses</h2>
+
+<div class="course-grid">
+
+<div class="course-card">
+<h3>Java Programming</h3>
+<p>Master Core Java, OOP, Collections and File Handling.</p>
+<div class="price">₹4999</div>
+</div>
+
+<div class="course-card">
+<h3>Web Development</h3>
+<p>HTML, CSS, JavaScript and Responsive Design.</p>
+<div class="price">₹3999</div>
+</div>
+
+<div class="course-card">
+<h3>Python Programming</h3>
+<p>Python from beginner to advanced level.</p>
+<div class="price">₹4500</div>
+</div>
+
+<div class="course-card">
+<h3>Data Structures</h3>
+<p>Interview preparation with DSA.</p>
+<div class="price">₹3500</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="forms" id="login">
+
+<div class="form-box">
+
+<h2>Student Login</h2>
+
+<input type="email" placeholder="Email">
+
+<input type="password" placeholder="Password">
+
+<button class="submit">Login</button>
+
+</div>
+
+<div class="form-box">
+
+<h2>Student Registration</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="email" placeholder="Email">
+
+<input type="password" placeholder="Password">
+
+<button class="submit">Register</button>
+
+</div>
+
+</section>
+
+<section class="dashboard" id="dashboard">
+
+<h2 class="section-title">Student Dashboard</h2>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card">
+<h3>Java Programming</h3>
+<p>Progress</p>
+<div class="progress">
+<div class="progress-bar" style="width:85%"></div>
+</div>
+</div>
+
+<div class="dashboard-card">
+<h3>Web Development</h3>
+<p>Progress</p>
+<div class="progress">
+<div class="progress-bar" style="width:65%"></div>
+</div>
+</div>
+
+<div class="dashboard-card">
+<h3>Python Programming</h3>
+<p>Progress</p>
+<div class="progress">
+<div class="progress-bar" style="width:40%"></div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="certificate">
+
+<h2 class="section-title">Certificate</h2>
+
+<div class="certificate-card">
+
+<h2>Course Completion Certificate</h2>
+
+<p>
+Complete your course and download your certificate after reaching 100% progress.
+</p>
+
+<br>
+
+<button class="btn primary"
+onclick="alert('Certificate Download Feature Connected To Java Backend');">
+Download Certificate
+</button>
+
+</div>
+
+</section>
+
+<footer id="footerText"></footer>
+
+<script>
+document.getElementById("footerText").innerHTML =
+"© " + new Date().getFullYear() +
+" Edu Course | Online Course Management System";
+</script>
+
+</body>
+</html>
